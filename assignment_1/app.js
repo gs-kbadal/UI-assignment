@@ -46,7 +46,7 @@ function addNewForm() {
     var li = document.createElement("li");
     li.innerHTML = ` <div class="container" id="container${freq}">
     <div class="small-box" id="counter${freq}">
-        <div id="ball${freq}">${freq}</div>
+        <div  class = "balls" id="ball${freq}">${freq}</div>
     </div>
     <div class="cross1" id="cross${freq}" onclick="cross_func(${freq})">
         <button>&#10006;</button>
@@ -225,14 +225,20 @@ function cross_func(id){
     console.log(items.length);
     freq = len;
 
-    let i = id+1;
-    let last = len;
-    for(let j=id;j<=last;j++){
-        var ball = document.getElementById('ball'+i);
-        console.log("i = " +i);
-        ball.innerHTML = i-1;
-        i++;
+    let ball_el = document.querySelectorAll('.balls');
+
+    for(let i=0;i<ball_el.length;i++){
+        ball_el[i].innerHTML = i+1;
     }
+
+    // let i = id+1;
+    // let last = len;
+    // for(let j=id;j<=last;j++){
+    //     var ball = document.getElementById('ball'+i);
+    //     console.log("i = " +i);
+    //     ball.innerHTML = i-1;
+    //     i++;
+    // }
 
     let ul1 = document.getElementById('myUl');
     var item1 = ul1.getElementsByTagName("li");
