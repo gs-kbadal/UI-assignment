@@ -97,8 +97,23 @@ function addNewForm() {
         document.getElementById('myUl').appendChild(li);
     }
 
+    // if(items.length>1){
+    //     document.getElementById('cross1').style.visibility = "visible";
+    // }
+
     if(items.length>1){
-        document.getElementById('cross1').style.visibility = "visible";
+        // document.getElementById('cross1').style.visibility = "visible";
+        var cross_el = document.querySelectorAll('cross1');
+        for(let i=0;i<cross_el.length;i++){
+            crosss_el.style.visibility = "visible";
+        }
+    }
+    else{
+        // document.getElementById('cross1').style.visibility = "visible";
+        var cross_el = document.querySelectorAll('cross1');
+        for(let i=0;i<cross_el.length;i++){
+            crosss_el.style.visibility = "hidden";
+        }
     }
     
 }
