@@ -97,16 +97,11 @@ function addNewForm() {
         document.getElementById('myUl').appendChild(li);
     }
 
-    // if(items.length>1){
-    //     document.getElementById('cross1').style.visibility = "visible";
-    // }
-
     if(items.length>1){
         // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('.cross1');
         for(let i=0;i<cross_el.length;i++){
             cross_el[i].style.visibility = "visible";
-            // cross_el[i].style.display = "block";
         }
     }
     else if(items.length==1){
@@ -114,7 +109,6 @@ function addNewForm() {
         var cross_el = document.querySelectorAll('cross1');
         for(let i=0;i<cross_el.length;i++){
             cross_el[i].style.visibility = "hidden";
-            // cross_el[i].style.display = "none";
         }
     }
     
@@ -156,7 +150,6 @@ let cnt = 1;
 const addDetails = function(e){
     e.preventDefault();
     addNewForm();
-
 };
 
 // function for clearing input of the input field in html after it got added
@@ -166,9 +159,11 @@ function clearInput(idx) {
     document.getElementById('mobile'+idx).value = "";
     document.getElementById('city'+idx).value = "";
     let gender = "gender"+idx;
-    // const btn = document.querySelector(`input[name=gender]:checked`);
-    // btn.checked = false;
-
+    var ele = document.getElementsByName(gender);
+    for(var i=0;i<ele.length;i++){
+        ele[i].checked = false;
+    }
+    
 }
 
 // On clicking save button - save the form in array and show the details of person in cosole and page both
@@ -185,7 +180,6 @@ const showDetails = function(e){
         first_details = details;
         console.log(first_details);
         flag = true;
-        // alert("forms saved successfully");
         clearInput(1);
     }
     else{
@@ -202,13 +196,12 @@ const showDetails = function(e){
             console.log("---------");
             console.log(arr);
             flag = true;
-            // alert("forms saved successfully");
         }
     }
     if(flag){
         alert("forms saved successfully");
     }
-    // alert("forms saved successfully");
+   
 }
 
 // function for cross button
