@@ -6,7 +6,7 @@ const addbtn = document.getElementById('addbtn');
 const savebtn = document.getElementById('savebtn');
 const cross = document.getElementById('cross1');
 
-// function to fetch the elements form DOM
+// function to fetch the elements from form DOM
 function getELements(id) {
     let cname = 'name';
     cname = cname+id;
