@@ -105,14 +105,16 @@ function addNewForm() {
         // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('cross1');
         for(let i=0;i<cross_el.length;i++){
-            crosss_el.style.visibility = "visible";
+            // cross_el.style.visibility = "visible";
+            cross_el.style.display = "block";
         }
     }
     else{
         // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('cross1');
         for(let i=0;i<cross_el.length;i++){
-            crosss_el.style.visibility = "hidden";
+            // cross_el.style.visibility = "hidden";
+            cross_el.style.display = "none";
         }
     }
     
