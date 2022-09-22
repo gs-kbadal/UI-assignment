@@ -1,55 +1,21 @@
 
-let arr = [];
-let freq = 1;
-// let disabled = false;
+let arr = []; // for storing the list of forms
+let freq = 1; // for maintaining the id of the form
 const addbtn = document.getElementById('addbtn');
 const savebtn = document.getElementById('savebtn');
 const cross = document.getElementById('cross1');
 
-// function to fetch the elements from form DOM
+// function to fetch the elements from form DOM using class name
 function getELements(idx) {
     let cname = document.querySelectorAll(".name")[idx].value;
-    console.log(cname);
     let cemail = document.querySelectorAll(".email")[idx].value;
-    console.log(cemail);
     let cmobile = document.querySelectorAll(".mobile")[idx].value;
-    console.log(cmobile);
     let ccity = document.querySelectorAll(".city")[idx].value;
-    console.log(ccity);
     const gender1 = document.querySelectorAll(".gender");
     let gen_id = parseInt(idx)
     gen_id = gen_id*2;
-    console.log(gen_id);
     const val = gender1[gen_id].getAttribute("name");
-    console.log(val);
     const cgender = document.querySelector(`input[name=${val}]:checked`) ? document.querySelector(`input[name=${val}]:checked`).value : null;
-    console.log(cgender);   
-
-    // let val = cname[idx].value;
-    // let cname = 'name';
-    // cname = cname+id;
-    // let cemail = 'email';
-    // cemail = cemail+id;
-    // let cmobile = 'mobile';
-    // cmobile = cmobile+id;
-    // let ccity = 'city';
-    // ccity = ccity+id;
-    // let cgender = 'gender';
-    // cgender = cgender+id;
-    // // let cgen = 'gender'+id;
-    // const name = document.getElementById(cname).value;
-    // console.log(name);
-    // const email = document.getElementById(cemail).value;
-    // console.log(email);
-    // const mobile = document.getElementById(cmobile).value;
-    // console.log(mobile);
-    // const city = document.getElementById(ccity).value;
-    // console.log(city);
-    // // debugger;
-    // const gender1 = document.querySelectorAll(".gender");
-    // const val = gender1[0].getAttribute("name");
-    // const gender = document.querySelector(`input[name=${cgender}]:checked`) ? document.querySelector(`input[name=val]:checked`).value : null;
-    // console.log(gender); 
 
     let details = {name: cname,
         email : cemail,
@@ -60,7 +26,7 @@ function getELements(idx) {
     return details;
 }
 
-
+// function to fetch element using id
 function getCrossElement(id){
     let cname = 'name';
     cname = cname+id;
@@ -72,21 +38,12 @@ function getCrossElement(id){
     ccity = ccity+id;
     let cgender = 'gender';
     cgender = cgender+id;
-    // let cgen = 'gender'+id;
+
     const name = document.getElementById(cname).value;
-    console.log(name);
     const email = document.getElementById(cemail).value;
-    console.log(email);
     const mobile = document.getElementById(cmobile).value;
-    console.log(mobile);
     const city = document.getElementById(ccity).value;
-    console.log(city);
-    // debugger;
-    // const gender1 = document.querySelectorAll(".gender");
-    // const val1 = gender1[0].getAttribute("name");
-    // const cgender = "gender"+id;
     const gender = document.querySelector(`input[name=${cgender}]:checked`) ? document.querySelector(`input[name=${cgender}]:checked`).value : null;
-    console.log(gender); 
 
     let details = {
         name: name,
@@ -98,6 +55,7 @@ function getCrossElement(id){
     return details;
 }
 
+// adding new form to the template and also incrementing the form number
 function addNewForm() {
     freq++;
     var li = document.createElement("li");
@@ -155,14 +113,12 @@ function addNewForm() {
     }
 
     if(items.length>1){
-        // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('.cross1');
         for(let i=0;i<cross_el.length;i++){
             cross_el[i].style.visibility = "visible";
         }
     }
     else if(items.length==1){
-        // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('cross1');
         for(let i=0;i<cross_el.length;i++){
             cross_el[i].style.visibility = "hidden";
@@ -171,6 +127,7 @@ function addNewForm() {
     
 }
 
+// check for invalid input
 function checkInValidInput(obj) {
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(obj.name==="" || obj.email==="" || obj.mobile==="" || obj.city==="" || obj.gender===""){
@@ -179,37 +136,14 @@ function checkInValidInput(obj) {
     return false;
 }
 
-// for showing the details of particular person
-// const showPersonDetails = function(){
-//     // e.preventDefault();
-//     let person = document.getElementById('person');
-//     let data = "";
-//     let count = 0;
-    
-//     if(arr.length>0){
-//         for(const el of arr){
-//             count++;
-//             data = data + '<div class="container1">';
-//             data = data + count + ". <br>" ;
-//             data = data + '<strong>name:</strong> ' + el.name + '<br>';
-//             data = data + '<strong>email:</strong> ' + el.email + '<br>';
-//             data = data + '<strong>mobile:</strong> ' + el.mobile + '<br>';
-//             data = data + '<strong>city:</strong> ' + el.city + '<br>';
-//             data = data + '<strong>gender:</strong> ' + el.gender + '<br>';
-//             data = data + '</div>';
-//         }
-//     }
-//     person.innerHTML = data;
-// }
-
-// for adding contact details
+// for adding new forms
 let cnt = 1;
 const addDetails = function(e){
     e.preventDefault();
     addNewForm();
 };
 
-// function for clearing input of the input field in html after it got added
+// function for clearing input value of the field in html after it got added
 function clearInput(idx) {
     document.querySelectorAll(".name")[idx].value = "";
     document.querySelectorAll(".email")[idx].value = "";
@@ -219,12 +153,6 @@ function clearInput(idx) {
     gen_id = gen_id*2;
     const gender1 = document.querySelectorAll(".gender");
     const val = gender1[gen_id].getAttribute("name");
-
-    // document.getElementById('name'+idx).value = "";
-    // document.getElementById('email'+idx).value = "";
-    // document.getElementById('mobile'+idx).value = "";
-    // document.getElementById('city'+idx).value = "";
-    // let gender = "gender"+idx;
     var ele = document.getElementsByName(val);
     for(var i=0;i<ele.length;i++){
         ele[i].checked = false;
@@ -232,8 +160,8 @@ function clearInput(idx) {
     
 }
 
-// On clicking save button - save the form in array and show the details of person in cosole and page both
-const showDetails = function(e){
+// For saving the person details--> if only one form then saving in object else in array
+const saveDetails = function(e){
     e.preventDefault();
     flag = false;
     arr = [];
@@ -241,6 +169,7 @@ const showDetails = function(e){
     let ul = document.getElementById('myUl');
     var items = ul.getElementsByTagName("li");
     
+    // if only one form
     if(items.length===1){
         let idx = 0;
         let details = getELements(idx);
@@ -249,7 +178,7 @@ const showDetails = function(e){
         flag = true;
         clearInput(idx);
     }
-    else{
+    else{ // for multiple forms
         for(let i=0;i<items.length;i++){
             let details = getELements(i);
             if(checkInValidInput(details)){
@@ -274,17 +203,11 @@ const showDetails = function(e){
 
 // function for cross button
 function cross_func(id){
-    console.log(freq);
-    console.log(id);
-    // let idd = parseInt(id);
-    // idd = idd;
     var details = getCrossElement(id);
-    console.log(details);
     if(checkInValidInput(details)===false){
         alert("you are deleting the filled form");
     }
     var container = 'container'+id;
-    console.log(container);
     var div = document.getElementById(container);
     var par = div.parentElement;
     par.remove();
@@ -293,7 +216,6 @@ function cross_func(id){
     let ul = document.getElementById('myUl');
     var items = ul.getElementsByTagName("li");
     var len = items.length;
-    console.log(items.length);
     freq = len;
 
     let ball_el = document.querySelectorAll('.balls');
@@ -301,15 +223,6 @@ function cross_func(id){
     for(let i=0;i<ball_el.length;i++){
         ball_el[i].innerHTML = i+1;
     }
-
-    // let i = id+1;
-    // let last = len;
-    // for(let j=id;j<=last;j++){
-    //     var ball = document.getElementById('ball'+i);
-    //     console.log("i = " +i);
-    //     ball.innerHTML = i-1;
-    //     i++;
-    // }
 
     let ul1 = document.getElementById('myUl');
     var item1 = ul1.getElementsByTagName("li");
@@ -324,6 +237,4 @@ function cross_func(id){
 
 
 addbtn.addEventListener('click', addDetails);
-savebtn.addEventListener('click',showDetails);
-
-// cross.addEventListener('click',crossFunc);
+savebtn.addEventListener('click',saveDetails);
