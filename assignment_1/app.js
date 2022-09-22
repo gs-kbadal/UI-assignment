@@ -109,7 +109,7 @@ function addNewForm() {
             // cross_el[i].style.display = "block";
         }
     }
-    else{
+    else if(items.length==1){
         // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('cross1');
         for(let i=0;i<cross_el.length;i++){
@@ -174,26 +174,51 @@ function clearInput(idx) {
 // On clicking save button - save the form in array and show the details of person in cosole and page both
 const showDetails = function(e){
     e.preventDefault();
+    flag = false;
     arr = [];
-    for(let i=1;i<=freq;i++){
-        let details = getELements(i);
-        if(checkInValidInput(details)){
-            alert('please fill the valid input');
-        }
-        else{
-            arr.push(details);
-            clearInput(i);
-        }
-        console.log("---------");
-        console.log(arr);
+    let first_details = {};
+    let ul = document.getElementById('myUl');
+    var items = ul.getElementsByTagName("li");
+    
+    if(items.length===1){
+        let details = getELements(1);
+        first_details = details;
+        console.log(first_details);
+        flag = true;
+        // alert("forms saved successfully");
+        clearInput(1);
     }
-    alert("forms saved successfully");
+    else{
+        for(let i=1;i<=freq;i++){
+            let details = getELements(i);
+            if(checkInValidInput(details)){
+                alert('please fill the valid input in form' +i);
+                break;
+            }
+            else{
+                arr.push(details);
+                clearInput(i);
+            }
+            console.log("---------");
+            console.log(arr);
+            flag = true;
+            // alert("forms saved successfully");
+        }
+    }
+    if(flag){
+        alert("forms saved successfully");
+    }
+    // alert("forms saved successfully");
 }
 
 // function for cross button
 function cross_func(id){
     console.log(freq);
     // console.log(id);
+    var details = getELements(id);
+    if(checkInValidInput(details)===false){
+        alert("you are deleting the filled form");
+    }
     var container = 'container'+id;
     console.log(container);
     var div = document.getElementById(container);
@@ -207,11 +232,7 @@ function cross_func(id){
     console.log(items.length);
     freq = len;
 
-    // for(let i=id+1;i<=freq;i++){
-    //     var ball = document.getElementById("ball"+i);
-    // }
     let i = id+1;
-    
     let last = len;
     for(let j=id;j<=last;j++){
         var ball = document.getElementById('ball'+i);
@@ -219,6 +240,15 @@ function cross_func(id){
         ball.innerHTML = i-1;
         i++;
     }
+
+    let ul1 = document.getElementById('myUl');
+    var item1 = ul1.getElementsByTagName("li");
+
+    if(item1.length==1){
+        let cross_el = document.querySelectorAll('.cross1');
+        cross_el[0].style.visibility = "hidden";
+    }
+    
 }
 
 
