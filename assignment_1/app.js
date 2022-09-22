@@ -48,7 +48,7 @@ function addNewForm() {
     <div class="small-box" id="counter${freq}">
         <div id="ball${freq}">${freq}</div>
     </div>
-    <div class="cross" id="cross${freq}" onclick="cross_func(${freq})">
+    <div class="cross1" id="cross${freq}" onclick="cross_func(${freq})">
         <button>&#10006;</button>
     </div>
     <br><br>
@@ -103,18 +103,18 @@ function addNewForm() {
 
     if(items.length>1){
         // document.getElementById('cross1').style.visibility = "visible";
-        var cross_el = document.querySelectorAll('cross1');
+        var cross_el = document.querySelectorAll('.cross1');
         for(let i=0;i<cross_el.length;i++){
-            // cross_el.style.visibility = "visible";
-            cross_el.style.display = "block";
+            cross_el[i].style.visibility = "visible";
+            // cross_el[i].style.display = "block";
         }
     }
     else{
         // document.getElementById('cross1').style.visibility = "visible";
         var cross_el = document.querySelectorAll('cross1');
         for(let i=0;i<cross_el.length;i++){
-            // cross_el.style.visibility = "hidden";
-            cross_el.style.display = "none";
+            cross_el[i].style.visibility = "hidden";
+            // cross_el[i].style.display = "none";
         }
     }
     
